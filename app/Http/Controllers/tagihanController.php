@@ -22,15 +22,14 @@ class tagihanController extends Controller
     public function store(Request $request)
     {
         $validateData = $request->validate([
-
-            'id_pelanggan' => 'string|required',
+            'no_pelanggan' => 'string|required',
             'periode' => 'string|required',
             'jml_pemakaian' => 'string|required',
             'total' => 'string|required'
 
         ]);
 
-        $pelanggan = Pelanggan::query()->where('id_pelanggan', $validateData['id_pelanggan'])->first();
+        $pelanggan = Pelanggan::query()->where('no_pelanggan', $validateData['no_pelanggan'])->first();
 
         $dataTagihan = [
             'id_pelanggan' => $pelanggan->id,

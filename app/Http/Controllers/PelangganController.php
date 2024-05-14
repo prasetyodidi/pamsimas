@@ -34,7 +34,7 @@ class PelangganController extends Controller
         $validateData = $request->validate([
             'nama' => 'string|required',
             'alamat' => 'string|required',
-            'id_pelanggan' => 'string|required|unique:pelanggans',
+            'no_pelanggan' => 'string|required|unique:pelanggans',
             'password' => 'string',
         ]);
 
@@ -73,7 +73,7 @@ class PelangganController extends Controller
 
             'nama' => 'string|required',
             'alamat' => 'string|required',
-            'id_pelanggan' => 'string|required|unique:pelanggans,id_pelanggan,'. $pelanggan->id
+            'no_pelanggan' => 'string|required|unique:pelanggans,no_pelanggan,'. $pelanggan->id
 
         ]);
 

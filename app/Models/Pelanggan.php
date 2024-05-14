@@ -15,7 +15,7 @@ class Pelanggan extends Authenticatable
     use HasFactory, Notifiable;
 
     protected $lable = "pelanggans";
-    protected $fillable = ['nama', 'alamat', 'id_pelanggan', 'password'];
+    protected $fillable = ['nama', 'alamat', 'no_pelanggan', 'password'];
     protected $guard = 'pelanggan';
 
     protected function password(): Attribute {

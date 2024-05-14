@@ -12,7 +12,8 @@ use Illuminate\Support\Facades\Log;
 
 class MidtransController extends Controller
 {
-    public function checkout(Request $request, String $id) {
+    public function checkout(Request $request, String $id)
+    {
         $tagihan = Tagihan::query()->findOrFail($id);
         $pelanggan = Auth::guard('pelanggan')->user();
 
@@ -28,23 +29,30 @@ class MidtransController extends Controller
             ],
         ];
 
+        $pembayaran = Pembayaran::query()->find($tagihan->id);
+
+        if ($pembayaran != null) {
+            return redirect($pembayaran->snap_url);
+        }
+
         try {
             $paymentUrl = \Midtrans\Snap::createTransaction($params)->redirect_url;
 
             $dataPembayaran = [
                 'id' => $tagihan->id,
-                'pelanggan_id' => $pelanggan->id,
+                'id_pelanggan' => $pelanggan->id,
                 'total' => $tagihan->total,
+                'status' => 'pending',
+                'snap_url' => $paymentUrl,
             ];
             Pembayaran::query()->create($dataPembayaran);
 
             Log::info($paymentUrl, ['type' => 'midtrans:payment url']);
 
             return redirect($paymentUrl);
-          }
-          catch (Exception $e) {
+        } catch (Exception $e) {
             echo $e->getMessage();
-          }
+        }
     }
 
     function paymentNotification(Request $request)
@@ -55,29 +63,34 @@ class MidtransController extends Controller
         $hashed = hash("sha512", $request->order_id . $request->status_code . $request->gross_amount . $serverKey);
 
         if ($hashed == $request->signature_key) {
-            if ($request->transactionStatus == 'capture') {
-                if ($request->fraudStatus == 'accept') {
+            $pembayaran = Pembayaran::query()->find($request->order_id);
+
+            $pembayaran->status = $request->transaction_status;
+            $pembayaran->payment_type = $request->payment_type;
+            $pembayaran->transaction_time = $request->transaction_time;
+            $pembayaran->save();
+            if ($request->transaction_status == 'capture') {
+                if ($request->fraud_status == 'accept') {
                     // TODO set transaction status on your database to 'success'
                     // and response with 200 OK
-                    Log::info('capture and accept', ['type' => 'midtrans:payment status']);
-
+                    Log::info('capture and accept', ['type' => 'midtrans:payment status', 'order_id id' => $request->order_id]);
                 }
-            } else if ($request->transactionStatus == 'settlement') {
+            } else if ($request->transaction_status == 'settlement') {
                 // TODO set transaction status on your database to 'success'
                 // and response with 200 OK
-                Log::info('settlement', ['type' => 'midtrans:payment status']);
+                Log::info('settlement', ['type' => 'midtrans:payment status', 'order_id id' => $request->order_id]);
             } else if (
-                $request->transactionStatus == 'cancel' ||
-                $request->transactionStatus == 'deny' ||
-                $request->transactionStatus == 'expire'
+                $request->transaction_status == 'cancel' ||
+                $request->transaction_status == 'deny' ||
+                $request->transaction_status == 'expire'
             ) {
                 // TODO set transaction status on your database to 'failure'
                 // and response with 200 OK
-                Log::info('cancel, deny, or expire', ['type' => 'midtrans:payment status']);
-            } else if ($request->transactionStatus == 'pending') {
+                Log::info('cancel, deny, or expire', ['type' => 'midtrans:payment status', 'order_id id' => $request->order_id]);
+            } else if ($request->transaction_status == 'pending') {
                 // TODO set transaction status on your database to 'pending' / waiting payment
                 // and response with 200 OK
-                Log::info('pending', ['type' => 'midtrans:payment status']);
+                Log::info('pending', ['type' => 'midtrans:payment status', 'order_id id' => $request->order_id]);
             }
         }
 

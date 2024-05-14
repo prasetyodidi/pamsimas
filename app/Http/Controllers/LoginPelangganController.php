@@ -17,11 +17,11 @@ class LoginPelangganController extends Controller
     public function login(Request $request)
     {
         $credentials = $request->validate([
-            'id_pelanggan' => ['required'],
+            'no_pelanggan' => ['required'],
             'password' => ['required']
         ]);
 
-        $pelanggan = Pelanggan::query()->where('id_pelanggan', $credentials['id_pelanggan'])->first();
+        $pelanggan = Pelanggan::query()->where('no_pelanggan', $credentials['no_pelanggan'])->first();
 
         if (Auth::guard('pelanggan')->attempt($credentials)) {
             return redirect()->route('plg.dash.index');

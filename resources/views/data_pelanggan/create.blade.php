@@ -41,11 +41,11 @@
                                 <label>Nomor Pelanggan</label>
                             </div>
                             <div class="col-md-8 form-group">
-                                <input type="text" id="id_pelanggan" name="id_pelanggan"
-                                    class="form-control @error('id_pelanggan') is invalid
+                                <input type="text" id="no_pelanggan" name="no_pelanggan"
+                                    class="form-control @error('no_pelanggan') is invalid
                                 @enderror"
-                                    value="{{ old('id_pelanggan') }}" placeholder="Nomor Pelanggan">
-                                @error('id_pelanggan')
+                                    value="{{ old('no_pelanggan') }}" placeholder="Nomor Pelanggan">
+                                @error('no_pelanggan')
                                     <div class="alert alert-danger">{{ $message }}</div>
                                 @enderror
                             </div>

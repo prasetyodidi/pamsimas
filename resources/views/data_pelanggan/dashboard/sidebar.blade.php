@@ -32,7 +32,7 @@
 
                 <li
                     class="sidebar-item  ">
-                    <a href="#" class='sidebar-link'>
+                    <a href="{{ route('plg.dash.pembayaran') }}" class='sidebar-link'>
                         <i class="bi bi-wallet2"></i>
                         <span>Pembayaran</span>
                     </a>

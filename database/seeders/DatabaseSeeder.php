@@ -2,6 +2,7 @@
 
 namespace Database\Seeders;
 
+use App\Models\Pelanggan;
 use App\Models\Role;
 use App\Models\User;
 // use Illuminate\Database\Console\Seeds\WithoutModelEvents;
@@ -36,6 +37,13 @@ class DatabaseSeeder extends Seeder
             'username' => 'pelanggan1',
             'email' => 'pelanggan@gmail.com',
             // 'role_id' => $rolePelanggan->id
+        ]);
+
+        Pelanggan::query()->create([
+            'nama' => 'ucup',
+            'alamat' => 'jl pramuka',
+            'no_pelanggan' => '111-ucup',
+            'password' => 'password',
         ]);
     }
 }

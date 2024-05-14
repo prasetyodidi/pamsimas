@@ -23,13 +23,13 @@
                     <form method="post" action="{{ route('plg.login') }}">
                         @csrf
                         <div class="form-group position-relative has-icon-left mb-4">
-                            <input type="text" id="id_pelanggan" name="id_pelanggan"
-                                class="form-control @error('id_pelanggan') is invalid @enderror form-control-xl"
-                                placeholder="id_pelanggan">
+                            <input type="text" id="no_pelanggan" name="no_pelanggan"
+                                class="form-control @error('no_pelanggan') is invalid @enderror form-control-xl"
+                                placeholder="no_pelanggan">
                             <div class="form-control-icon">
                                 <i class="bi bi-person"></i>
                             </div>
-                            @error('id_pelanggan')
+                            @error('no_pelanggan')
                                 <small class="btn btn-danger">{{ $message }}</small>
                             @enderror
                         </div>

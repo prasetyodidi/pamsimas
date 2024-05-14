@@ -12,12 +12,13 @@ return new class extends Migration
     public function up(): void
     {
         Schema::create('pembayarans', function (Blueprint $table) {
-            $table->id();
+            $table->uuid('id')->primary();
             $table->unsignedBigInteger('id_pelanggan');
             $table->unsignedBigInteger('total');
             $table->string('status');
-            $table->string('payment_type');
-            $table->dateTime('transaction_time');
+            $table->string('payment_type')->nullable();
+            $table->dateTime('transaction_time')->nullable();
+            $table->string('snap_url');
             $table->timestamps();
 
             $table->foreign('id_pelanggan')->on('pelanggans')->references('id')->onUpdate('cascade')->onDelete('cascade');

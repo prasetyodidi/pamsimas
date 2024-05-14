@@ -40,7 +40,7 @@
 
                 <li
                     class="sidebar-item  ">
-                    <a href="#" class='sidebar-link'>
+                    <a href="{{ route('pembayaran.index') }}" class='sidebar-link'>
                         <i class="bi bi-wallet2"></i>
                         <span>Pembayaran</span>
                     </a>
