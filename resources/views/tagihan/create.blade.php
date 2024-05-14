@@ -17,11 +17,11 @@
                                 <label>No Pelanggan</label>
                             </div>
                             <div class="col-md-8 form-group">
-                                <input type="text" id="no_pelanggan" name="no_pelanggan" 
-                                    class="form-control @error('no_pelanggan') is invalid 
-                                @enderror" 
-                                    value="{{ old('no_pelanggan') }}" placeholder="No Pelanggan">
-                                @error('no_pelanggan')
+                                <input type="text" id="id_pelanggan" name="id_pelanggan"
+                                    class="form-control @error('id_pelanggan') is invalid
+                                @enderror"
+                                    value="{{ old('id_pelanggan') }}" placeholder="No Pelanggan">
+                                @error('id_pelanggan')
                                     <div class="alert alert-danger">{{ $message }}</div>
                                 @enderror
                             </div>
@@ -29,9 +29,9 @@
                                 <label>Periode</label>
                             </div>
                             <div class="col-md-8 form-group">
-                                <input type="month" id="periode" name="periode" 
-                                    class="form-control @error('periode') is invalid 
-                                @enderror" 
+                                <input type="month" id="periode" name="periode"
+                                    class="form-control @error('periode') is invalid
+                                @enderror"
                                     value="{{ old('periode') }}" placeholder="Periode">
                                 @error('periode')
                                     <div class="alert alert-danger">{{ $message }}</div>
@@ -41,9 +41,9 @@
                                 <label>Pemakaian</label>
                             </div>
                             <div class="col-md-8 form-group">
-                                <input type="text" id="jml_pemakaian" name="jml_pemakaian" 
-                                    class="form-control @error('jml_pemakaian') is invalid 
-                                @enderror" 
+                                <input type="text" id="jml_pemakaian" name="jml_pemakaian"
+                                    class="form-control @error('jml_pemakaian') is invalid
+                                @enderror"
                                     value="{{ old('jml_pemakaian') }}" placeholder="Jumlah Pemakaian">
                                 @error('jml_pemakaian')
                                     <div class="alert alert-danger">{{ $message }}</div>
@@ -53,9 +53,9 @@
                                 <label>Total</label>
                             </div>
                             <div class="col-md-8 form-group">
-                                <input type="text" id="total" name="total" 
-                                    class="form-control @error('total') is invalid 
-                                @enderror" 
+                                <input type="text" id="total" name="total"
+                                    class="form-control @error('total') is invalid
+                                @enderror"
                                     value="{{ old('total') }}" placeholder="Total">
                                 @error('total')
                                     <div class="alert alert-danger">{{ $message }}</div>
@@ -73,5 +73,5 @@
         </div>
     </div>
 </div>
-    
+
 @endsection

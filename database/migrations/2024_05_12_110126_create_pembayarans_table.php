@@ -11,12 +11,13 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('tagihans', function (Blueprint $table) {
+        Schema::create('pembayarans', function (Blueprint $table) {
             $table->id();
             $table->unsignedBigInteger('id_pelanggan');
-            $table->string('periode');
-            $table->string('jml_pemakaian');
-            $table->string('total');
+            $table->unsignedBigInteger('total');
+            $table->string('status');
+            $table->string('payment_type');
+            $table->dateTime('transaction_time');
             $table->timestamps();
 
             $table->foreign('id_pelanggan')->on('pelanggans')->references('id')->onUpdate('cascade')->onDelete('cascade');
@@ -28,6 +29,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('tagihans');
+        Schema::dropIfExists('pembayarans');
     }
 };

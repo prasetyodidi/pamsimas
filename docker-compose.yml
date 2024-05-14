@@ -1,0 +1,32 @@
+version: "3.8"
+
+services:
+  mysql:
+    image: mysql:8.3.0
+    container_name: mysql_pamsimas
+    ports:
+      - "3306:3306"
+    environment:
+      MYSQL_ROOT_PASSWORD: your_mysql_root_password
+      MYSQL_DATABASE: your_database_name
+      MYSQL_USER: your_mysql_user
+      MYSQL_PASSWORD: your_mysql_password
+    volumes:
+      - mysql_data:/var/lib/mysql
+#   phpmyadmin:
+#     image: phpmyadmin/phpmyadmin:latest
+#     container_name: phpmyadmin_pamsimas
+#     links:
+#       - mysql
+#     ports:
+#       - "8080:80"
+#     environment:
+#       PMA_HOST: mysql
+#       MYSQL_ROOT_PASSWORD: your_mysql_root_password
+#   redis:
+#     image: redis:7.2.4-alpine
+#     container_name: redis
+#     ports:
+#       - "6379:6379"
+volumes:
+  mysql_data:

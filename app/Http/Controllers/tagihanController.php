@@ -2,12 +2,13 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Pelanggan;
 use App\Models\Tagihan;
 use Illuminate\Http\Request;
 
 class tagihanController extends Controller
 {
-    public function index() 
+    public function index()
     {
         $tagihans = Tagihan::all();
         return view('tagihan.index', compact('tagihans'));
@@ -22,21 +23,30 @@ class tagihanController extends Controller
     {
         $validateData = $request->validate([
 
-            'no_pelanggan' => 'string|required',
+            'id_pelanggan' => 'string|required',
             'periode' => 'string|required',
             'jml_pemakaian' => 'string|required',
             'total' => 'string|required'
 
         ]);
 
-        $tagihan = Tagihan::create($validateData);
+        $pelanggan = Pelanggan::query()->where('id_pelanggan', $validateData['id_pelanggan'])->first();
+
+        $dataTagihan = [
+            'id_pelanggan' => $pelanggan->id,
+            'periode' => $validateData['periode'],
+            'jml_pemakaian' => $validateData['jml_pemakaian'],
+            'total' => $validateData['total'],
+        ];
+
+        $tagihan = Tagihan::create($dataTagihan);
 
             if ($tagihan){
                 return to_route('tagihan.index')->with('success', 'Berhasil Menambah Data');
             }else{
                 return to_route('tagihan.index')->with('failed', 'Gagal Menambah Data');
             }
-        
+
     }
 
     public function edit()

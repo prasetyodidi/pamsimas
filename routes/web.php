@@ -3,6 +3,10 @@
 use App\Http\Controllers\dashboardController;
 use App\Http\Controllers\datapelangganController;
 use App\Http\Controllers\loginController;
+use App\Http\Controllers\LoginPelangganController;
+use App\Http\Controllers\MidtransController;
+use App\Http\Controllers\PelangganController;
+use App\Http\Controllers\PelangganDashboardController;
 use App\Http\Controllers\registerController;
 use App\Http\Controllers\tagihanController;
 use App\Models\Pelanggan;
@@ -11,6 +15,12 @@ use Illuminate\Support\Facades\Route;
 // Route::get('/', function () {
 //     return view('kerangka.master');
 // });
+
+
+Route::group(['prefix' => 'pelanggan/dashboard', 'middleware' => 'pelanggan'], function () {
+    Route::get('/', [PelangganDashboardController::class, 'index'])->name('plg.dash.index');
+    Route::get('tagihan', [PelangganDashboardController::class, 'tagihan'])->name('plg.dash.tagihan');
+});
 
 Route::get('/dashboard', [dashboardController::class, 'index']);
 
@@ -22,12 +32,16 @@ Route::get('/register', [registerController::class, 'index'])->name('register');
 Route::post('/regist', [registerController::class, 'store'])->name('register.store');
 
 //data pelanggan
-Route::get('/data-pelanggan', [datapelangganController::class, 'index'])->name('datapelanggan.index');
-Route::get('/create-pelanggan', [datapelangganController::class, 'create'])->name('datapelanggan.create');
-Route::post('/data-pelanggan', [datapelangganController::class, 'store'])->name('datapelanggan.store');
-Route::get('/data-pelanggan/{pelanggan}/edit', [datapelangganController::class, 'edit'])->name('datapelanggan.edit');
-Route::post('/data-pelanggan/{pelanggan}/update', [datapelangganController::class, 'update'])->name('datapelanggan.update');
-Route::delete('/data-pelanggan/{pelanggan}', [datapelangganController::class, 'destroy'])->name('datapelanggan.destroy');
+Route::group(['middleware' => 'auth:web'], function () {
+    Route::resource('pelanggan', PelangganController::class);
+
+});
+// Route::get('/data-pelanggan', [datapelangganController::class, 'index'])->name('datapelanggan.index');
+// Route::get('/create-pelanggan', [datapelangganController::class, 'create'])->name('datapelanggan.create');
+// Route::post('/data-pelanggan', [datapelangganController::class, 'store'])->name('datapelanggan.store');
+// Route::get('/data-pelanggan/{pelanggan}/edit', [datapelangganController::class, 'edit'])->name('datapelanggan.edit');
+// Route::post('/data-pelanggan/{pelanggan}/update', [datapelangganController::class, 'update'])->name('datapelanggan.update');
+// Route::delete('/data-pelanggan/{pelanggan}', [datapelangganController::class, 'destroy'])->name('datapelanggan.destroy');
 
 //tagihan pelanggan
 Route::get('/tagihan-pelanggan', [tagihanController::class, 'index'])->name('tagihan.index');
@@ -35,3 +49,12 @@ Route::get('/create-tagihan', [tagihanController::class, 'create'])->name('tagih
 Route::post('/create-tagihan', [tagihanController::class, 'store'])->name('tagihan.store');
 Route::get('/edit-tagihan', [tagihanController::class, 'edit'])->name('tagihan.edit');
 Route::delete('/tagihan-pelanggan/{tagihan}', [tagihanController::class, 'destroy'])->name('tagihan.destroy');
+
+Route::get('/login', [LoginPelangganController::class, 'show'])->name('plg.login.show');
+Route::post('/login', [LoginPelangganController::class, 'login'])->name('plg.login');
+
+Route::get('/midtrans/success', function () {
+    return 'success!';
+});
+
+Route::post('tagihan/{id}/bayar', [MidtransController::class, 'checkout'])->name('tagihan.checkout');

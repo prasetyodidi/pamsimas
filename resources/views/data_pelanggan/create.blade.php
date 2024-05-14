@@ -9,7 +9,7 @@
         </div>
         <div class="card-content">
             <div class="card-body">
-                <form class="form form-horizontal" method="POST" action="{{ route('datapelanggan.store') }}">
+                <form class="form form-horizontal" method="POST" action="{{ route('pelanggan.store') }}">
                     @csrf
                     <div class="form-body">
                         <div class="row">
@@ -17,9 +17,9 @@
                                 <label>Nama</label>
                             </div>
                             <div class="col-md-8 form-group">
-                                <input type="text" id="nama" name="nama" 
-                                    class="form-control @error('nama') is invalid 
-                                @enderror" 
+                                <input type="text" id="nama" name="nama"
+                                    class="form-control @error('nama') is invalid
+                                @enderror"
                                     value="{{ old('nama') }}" placeholder="Nama">
                                 @error('nama')
                                     <div class="alert alert-danger">{{ $message }}</div>
@@ -29,9 +29,9 @@
                                 <label>Alamat</label>
                             </div>
                             <div class="col-md-8 form-group">
-                                <input type="text" id="alamat" name="alamat" 
-                                    class="form-control @error('alamat') is invalid 
-                                @enderror" 
+                                <input type="text" id="alamat" name="alamat"
+                                    class="form-control @error('alamat') is invalid
+                                @enderror"
                                     value="{{ old('alamat') }}" placeholder="Alamat">
                                 @error('alamat')
                                     <div class="alert alert-danger">{{ $message }}</div>
@@ -41,11 +41,24 @@
                                 <label>Nomor Pelanggan</label>
                             </div>
                             <div class="col-md-8 form-group">
-                                <input type="text" id="no_pelanggan" name="no_pelanggan" 
-                                    class="form-control @error('no_pelanggan') is invalid 
-                                @enderror" 
-                                    value="{{ old('no_pelanggan') }}" placeholder="Nomor Pelanggan">
-                                @error('no_pelanggan')
+                                <input type="text" id="id_pelanggan" name="id_pelanggan"
+                                    class="form-control @error('id_pelanggan') is invalid
+                                @enderror"
+                                    value="{{ old('id_pelanggan') }}" placeholder="Nomor Pelanggan">
+                                @error('id_pelanggan')
+                                    <div class="alert alert-danger">{{ $message }}</div>
+                                @enderror
+                            </div>
+
+                            <div class="col-md-4">
+                                <label>Password</label>
+                            </div>
+                            <div class="col-md-8 form-group">
+                                <input type="text" id="password" name="password"
+                                    class="form-control @error('password') is invalid
+                                @enderror"
+                                    value="{{ old('password') }}" placeholder="Password">
+                                @error('password')
                                     <div class="alert alert-danger">{{ $message }}</div>
                                 @enderror
                             </div>
