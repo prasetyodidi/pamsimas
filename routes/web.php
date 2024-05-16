@@ -39,6 +39,8 @@ Route::group(['middleware' => 'auth:web'], function () {
     Route::resource('pelanggan', PelangganController::class);
     Route::resource('pembayaran', PembayaranController::class);
     Route::get('laporan', [LaporanController::class, 'index'])->name('laporan.index');
+    Route::get('laporan/excel/export', [LaporanController::class, 'excelExport'])->name('laporan.export.excel');
+    Route::get('laporan/pdf/export', [LaporanController::class, 'pdfExport'])->name('laporan.export.pdf');
     Route::get('cari-tagihan', [tagihanController::class, 'cariTagihan'])->name('tagihan.cari');
 });
 // Route::get('/data-pelanggan', [datapelangganController::class, 'index'])->name('datapelanggan.index');

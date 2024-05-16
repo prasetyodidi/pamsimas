@@ -25,6 +25,8 @@
                     <div class="card-content">
                         <div class="card-body">
                             <div class="table-responsive">
+                                <a href="{{ route('laporan.export.excel') }}" class="btn btn-success">Excel</a>
+                                <a href="{{ route('laporan.export.pdf') }}" class="btn btn-danger">PDF</a>
                                 <table class="table table-striped">
                                     <thead>
                                         <tr>
