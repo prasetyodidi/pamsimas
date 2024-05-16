@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\dashboardController;
 use App\Http\Controllers\datapelangganController;
+use App\Http\Controllers\LaporanController;
 use App\Http\Controllers\loginController;
 use App\Http\Controllers\LoginPelangganController;
 use App\Http\Controllers\MidtransController;
@@ -37,6 +38,8 @@ Route::post('/regist', [registerController::class, 'store'])->name('register.sto
 Route::group(['middleware' => 'auth:web'], function () {
     Route::resource('pelanggan', PelangganController::class);
     Route::resource('pembayaran', PembayaranController::class);
+    Route::get('laporan', [LaporanController::class, 'index'])->name('laporan.index');
+    Route::get('cari-tagihan', [tagihanController::class, 'cariTagihan'])->name('tagihan.cari');
 });
 // Route::get('/data-pelanggan', [datapelangganController::class, 'index'])->name('datapelanggan.index');
 // Route::get('/create-pelanggan', [datapelangganController::class, 'create'])->name('datapelanggan.create');

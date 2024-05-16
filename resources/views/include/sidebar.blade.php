@@ -48,7 +48,7 @@
 
                 <li
                     class="sidebar-item  ">
-                    <a href="#" class='sidebar-link'>
+                    <a href="{{ route('laporan.index') }}" class='sidebar-link'>
                         <i class="bi bi-file-earmark-text"></i>
                         <span>Laporan</span>
                     </a>
@@ -56,7 +56,7 @@
 
                 <li
                     class="sidebar-item  ">
-                    <a href="#" class='sidebar-link'>
+                    <a href="{{ route('tagihan.cari') }}" class='sidebar-link'>
                         <i class="bi bi-search"></i>
                         <span>Cari Tagihan</span>
                     </a>
