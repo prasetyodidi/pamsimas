@@ -64,14 +64,19 @@ class tagihanController extends Controller
     }
 
     public function cariTagihan(Request $request) {
+        $noPelanggan = $request->no_pelanggan;
         if ($request->no_pelanggan != null) {
             $pelanggan = Pelanggan::query()->where('no_pelanggan', $request->no_pelanggan)->first();
-            $listTagihan = Tagihan::query()->where('id_pelanggan', $pelanggan->id)->doesntHave('pembayaran')->get();
+            if ($pelanggan == null) {
+                $listTagihan = null;
+            } else {
+                $listTagihan = Tagihan::query()->where('id_pelanggan', $pelanggan->id)->doesntHave('pembayaran')->get();
+            }
         } else {
             $listTagihan = Tagihan::query()->doesntHave('pembayaran')->get();
         }
 
-        return view('tagihan.cari', compact('listTagihan'));
+        return view('tagihan.cari', compact('listTagihan', 'noPelanggan'));
     }
 
 }
