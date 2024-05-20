@@ -28,32 +28,36 @@
                                 <form action="{{ route('tagihan.cari') }}" method="get">
                                     <div class="input-group mb-3">
                                         <input type="text" id="no_pelanggan" name="no_pelanggan"
-                                            placeholder="no pelanggan" />
+                                            value="{{ $noPelanggan ?? '' }}" placeholder="no pelanggan" />
                                         <button type="submit" class="btn btn-primary">Cari</button>
                                     </div>
                                 </form>
-                                <table class="table table-striped">
-                                    <thead>
-                                        <tr>
-                                            <th>No</th>
-                                            <th>No Pelanggan</th>
-                                            <th>Periode</th>
-                                            <th>Pemakaian</th>
-                                            <th>Total</th>
-                                        </tr>
-                                    </thead>
-                                    <tbody>
-                                        @foreach ($listTagihan as $pembayaran)
+                                @if ($listTagihan == null)
+                                    <div class="text-center">data tidak ditemukan</div>
+                                @else
+                                    <table class="table table-striped">
+                                        <thead>
                                             <tr>
-                                                <td>{{ $loop->iteration }}</td>
-                                                <td>{{ $pembayaran->pelanggan->no_pelanggan }}</td>
-                                                <td>{{ $pembayaran->periode }}</td>
-                                                <td>{{ $pembayaran->jml_pemakaian }}</td>
-                                                <td>{{ $pembayaran->total }}</td>
+                                                <th>No</th>
+                                                <th>No Pelanggan</th>
+                                                <th>Periode</th>
+                                                <th>Pemakaian</th>
+                                                <th>Total</th>
                                             </tr>
-                                        @endforeach
-                                    </tbody>
-                                </table>
+                                        </thead>
+                                        <tbody>
+                                            @foreach ($listTagihan as $pembayaran)
+                                                <tr>
+                                                    <td>{{ $loop->iteration }}</td>
+                                                    <td>{{ $pembayaran->pelanggan->no_pelanggan }}</td>
+                                                    <td>{{ $pembayaran->periode }}</td>
+                                                    <td>{{ $pembayaran->jml_pemakaian }}</td>
+                                                    <td>{{ $pembayaran->total }}</td>
+                                                </tr>
+                                            @endforeach
+                                        </tbody>
+                                    </table>
+                                @endif
                             </div>
                         </div>
                     </div>
