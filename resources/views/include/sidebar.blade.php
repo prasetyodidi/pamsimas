@@ -24,6 +24,13 @@
 
                 <li
                     class="sidebar-item  ">
+                    <a href="{{ route('admin.dashboard') }}" class='sidebar-link'>
+                        <i class="bi bi-clipboard-data"></i>
+                        <span>Dashbaord</span>
+                    </a>
+                </li>
+                <li
+                    class="sidebar-item  ">
                     <a href="{{ route('pelanggan.index') }}" class='sidebar-link'>
                         <i class="bi bi-clipboard-data"></i>
                         <span>Data Pelanggan</span>
