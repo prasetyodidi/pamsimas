@@ -21,7 +21,7 @@
                                 </div>
                                 <div class="col-md-8 col-lg-12 col-xl-12 col-xxl-7">
                                     <h6 class="text-muted font-semibold">Pelanggan</h6>
-                                    <h6 class="font-extrabold mb-0">183.000</h6>
+                                    <h6 class="font-extrabold mb-0">{{ $totalPelanggan }}</h6>
                                 </div>
                             </div>
                         </div>
@@ -38,7 +38,7 @@
                                 </div>
                                 <div class="col-md-8 col-lg-12 col-xl-12 col-xxl-7">
                                     <h6 class="text-muted font-semibold">Pembayaran</h6>
-                                    <h6 class="font-extrabold mb-0">80.000</h6>
+                                    <h6 class="font-extrabold mb-0">{{ $totalPembayaran }}</h6>
                                 </div>
                             </div>
                         </div>
@@ -57,7 +57,7 @@
                     </div>
                 </div>
             </div>
-           
+
         </div>
         <div class="col-12 col-lg-3">
             <div class="card">
@@ -67,8 +67,8 @@
                             <img src="assets/images/faces/1.jpg" alt="Face 1">
                         </div>
                         <div class="ms-3 name">
-                            <h5 class="font-bold">John Duck</h5>
-                            <h6 class="text-muted mb-0">@johnducky</h6>
+                            <h5 class="font-bold">{{ $user->name }}</h5>
+                            <h6 class="text-muted mb-0">{{ $user->email }}</h6>
                         </div>
                     </div>
                 </div>
@@ -76,5 +76,5 @@
         </div>
     </section>
 </div>
-    
+
 @endsection
