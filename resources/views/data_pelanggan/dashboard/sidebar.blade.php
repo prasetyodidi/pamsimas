@@ -37,22 +37,6 @@
                         <span>Pembayaran</span>
                     </a>
                 </li>
-
-                <li
-                    class="sidebar-item  ">
-                    <a href="#" class='sidebar-link'>
-                        <i class="bi bi-file-earmark-text"></i>
-                        <span>Laporan</span>
-                    </a>
-                </li>
-
-                <li
-                    class="sidebar-item  ">
-                    <a href="#" class='sidebar-link'>
-                        <i class="bi bi-search"></i>
-                        <span>Cari Tagihan</span>
-                    </a>
-                </li>
             </ul>
         </div>
     </div>
