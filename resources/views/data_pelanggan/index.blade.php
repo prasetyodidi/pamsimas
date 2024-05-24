@@ -44,7 +44,7 @@
                                             <td>{{ $loop->iteration }}</td>
                                             <td>{{ $pelanggan->nama }}</td>
                                             <td>{{ $pelanggan->alamat }}</td>
-                                            <td>{{ $pelanggan->id_pelanggan }}</td>
+                                            <td>{{ $pelanggan->no_pelanggan }}</td>
                                             <td>
                                                 <div class="d-flex">
                                                     <a class="btn btn-warning mx-1" href="{{ route('pelanggan.edit', $pelanggan->id) }}">Update</a>

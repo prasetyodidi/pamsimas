@@ -16,7 +16,8 @@ class tagihanController extends Controller
 
     public function create()
     {
-        return view('tagihan.create');
+        $daftarPelanggan = Pelanggan::get();
+        return view('tagihan.create', compact('daftarPelanggan'));
     }
 
     public function store(Request $request)
