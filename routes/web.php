@@ -23,9 +23,8 @@ Route::group(['prefix' => 'pelanggan/dashboard', 'middleware' => 'pelanggan'], f
     Route::get('/', [PelangganDashboardController::class, 'index'])->name('plg.dash.index');
     Route::get('tagihan', [PelangganDashboardController::class, 'tagihan'])->name('plg.dash.tagihan');
     Route::get('pembayaran', [PelangganDashboardController::class, 'pembayaran'])->name('plg.dash.pembayaran');
+    Route::get('pembayaran/{id}/pdf/export', [PelangganDashboardController::class, 'exportPdf'])->name('plg.dash.pembayaran.pdf');
 });
-
-Route::get('/dashboard', [dashboardController::class, 'index']);
 
 Route::get('/', [loginController::class, 'index'])->name('login');
 Route::post('/log', [loginController::class, 'login'])->name('login.store');
@@ -36,6 +35,7 @@ Route::post('/regist', [registerController::class, 'store'])->name('register.sto
 
 //data pelanggan
 Route::group(['middleware' => 'auth:web'], function () {
+    Route::get('/dashboard', [dashboardController::class, 'index'])->name('admin.dashboard');
     Route::resource('pelanggan', PelangganController::class);
     Route::resource('pembayaran', PembayaranController::class);
     Route::get('laporan', [LaporanController::class, 'index'])->name('laporan.index');

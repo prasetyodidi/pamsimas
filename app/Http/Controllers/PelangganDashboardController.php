@@ -2,10 +2,12 @@
 
 namespace App\Http\Controllers;
 
+use App\Exports\BuktiBayarExport;
 use App\Models\Pembayaran;
 use App\Models\Tagihan;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Maatwebsite\Excel\Facades\Excel;
 
 class PelangganDashboardController extends Controller
 {
@@ -26,5 +28,10 @@ class PelangganDashboardController extends Controller
 
         $listPembayaran = Pembayaran::query()->where('id_pelanggan', $pelanggan->id)->get();
         return view('data_pelanggan.dashboard.pembayaran', compact('listPembayaran'));
+    }
+
+    public function exportPdf(Request $request, string $id) {
+        $fileName = 'pembayaran_' . $id . '.pdf';
+        return Excel::download(new BuktiBayarExport($id), $fileName, \Maatwebsite\Excel\Excel::DOMPDF);
     }
 }

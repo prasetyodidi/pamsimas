@@ -40,7 +40,6 @@ class datapelangganController extends Controller
 
     public function edit(Pelanggan $pelanggan)
     {
-        // $pelanggan = Pelanggan::all();
         return view('data_pelanggan.edit', compact('pelanggan'));
     }
 
