@@ -42,7 +42,7 @@
                                     @foreach ($tagihans as $tagihan)
                                         <tr>
                                             <td>{{ $loop->iteration }}</td>
-                                            <td>{{ $tagihan->id_pelanggan }}</td>
+                                            <td>{{ $tagihan->pelanggan->no_pelanggan }}</td>
                                             <td>{{ $tagihan->periode }}</td>
                                             <td>{{ $tagihan->jml_pemakaian }}</td>
                                             <td>{{ $tagihan->total}}</td>
