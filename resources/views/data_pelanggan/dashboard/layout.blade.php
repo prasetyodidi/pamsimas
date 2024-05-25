@@ -23,7 +23,7 @@
             </header>
 
             <div class="page-heading">
-                <h3>Dashboard Admin</h3>
+                <h3>Dashboard Pelanggan</h3>
             </div>
 
             @yield('content')

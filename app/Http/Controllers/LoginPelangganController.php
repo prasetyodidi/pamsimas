@@ -5,7 +5,6 @@ namespace App\Http\Controllers;
 use App\Models\Pelanggan;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
-use Illuminate\Support\Facades\Hash;
 
 class LoginPelangganController extends Controller
 {
@@ -24,7 +23,7 @@ class LoginPelangganController extends Controller
         $pelanggan = Pelanggan::query()->where('no_pelanggan', $credentials['no_pelanggan'])->first();
 
         if (Auth::guard('pelanggan')->attempt($credentials)) {
-            return redirect()->route('plg.dash.index');
+            return redirect()->route('plg.dash.tagihan');
         }
 
         return back()->withErrors([

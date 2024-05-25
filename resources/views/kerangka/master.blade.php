@@ -12,7 +12,7 @@
 
 <body>
     <div id="app">
-        
+
         @include('include.sidebar')
 
         <div id="main">
@@ -21,7 +21,7 @@
                     <i class="bi bi-justify fs-3"></i>
                 </a>
             </header>
-            
+
             <div class="page-heading">
                 <h3>Dashboard Admin</h3>
             </div>
