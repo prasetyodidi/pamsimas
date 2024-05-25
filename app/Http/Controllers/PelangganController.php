@@ -41,9 +41,9 @@ class PelangganController extends Controller
         $pelanggan = Pelanggan::create($validateData);
 
         if ($pelanggan){
-            return to_route('data_pelanggan.index')->with('success', 'Berhasil Menambah Data');
+            return to_route('pelanggan.index')->with('success', 'Berhasil Menambah Data');
         }else{
-            return to_route('data_pelanggan.index')->with('failed', 'Gagal Menambah Data');
+            return to_route('pelanggan.index')->with('failed', 'Gagal Menambah Data');
         }
     }
 
@@ -80,9 +80,9 @@ class PelangganController extends Controller
         $pelanggan->update($validateData);
 
         if ($pelanggan){
-            return to_route('data_pelanggan.index')->with('success', 'Berhasil Mengubah Data');
+            return to_route('pelanggan.index')->with('success', 'Berhasil Mengubah Data');
         }else{
-            return to_route('data_pelanggan.index')->with('failed', 'Gagal Mengubah Data');
+            return to_route('pelanggan.index')->with('failed', 'Gagal Mengubah Data');
         }
     }
 
@@ -93,9 +93,9 @@ class PelangganController extends Controller
     {
         $pelanggan->delete();
         if ($pelanggan){
-            return to_route('data_pelanggan.index')->with('success', 'Berhasil Meenghapus Data');
+            return to_route('pelanggan.index')->with('success', 'Berhasil Meenghapus Data');
         }else{
-            return to_route('data_pelanggan.index')->with('failed', 'Gagal Menghapus Data');
+            return to_route('pelanggan.index')->with('failed', 'Gagal Menghapus Data');
         }
     }
 }
