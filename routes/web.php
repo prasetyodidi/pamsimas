@@ -55,7 +55,8 @@ Route::group(['middleware' => 'auth:web'], function () {
 Route::get('/tagihan-pelanggan', [tagihanController::class, 'index'])->name('tagihan.index');
 Route::get('/create-tagihan', [tagihanController::class, 'create'])->name('tagihan.create');
 Route::post('/create-tagihan', [tagihanController::class, 'store'])->name('tagihan.store');
-Route::get('/edit-tagihan', [tagihanController::class, 'edit'])->name('tagihan.edit');
+Route::get('/edit-tagihan/{id}', [tagihanController::class, 'edit'])->name('tagihan.edit');
+Route::put('/edit-tagihan/{id}', [tagihanController::class, 'update'])->name('tagihan.update');
 Route::delete('/tagihan-pelanggan/{tagihan}', [tagihanController::class, 'destroy'])->name('tagihan.destroy');
 
 Route::get('/login', [LoginPelangganController::class, 'show'])->name('plg.login.show');
